@@ -398,7 +398,7 @@ signed   int   SiLabs_SAT_Tuner_Set_Address    (SILABS_SAT_TUNER_Context *silabs
 signed   int   SiLabs_SAT_Tuner_HW_Init        (SILABS_SAT_TUNER_Context *silabs_tuner) {
   signed   int return_code;
   return_code = -1;
-  SiTRACE("SiLabs_SAT_Tuner_HW_Init silabs_tuner->sat_tuner_code 0x%x, %ld\n", silabs_tuner->sat_tuner_code,silabs_tuner->sat_tuner_code);
+  SiTRACE("SiLabs_SAT_Tuner_HW_Init silabs_tuner->sat_tuner_code 0x%x, %d\n", silabs_tuner->sat_tuner_code,silabs_tuner->sat_tuner_code);
 #ifdef    SAT_TUNER_AV2012
   if (silabs_tuner->sat_tuner_code == 0xA2012) {
     SiTRACE("SiLabs_SAT_Tuner_HW_Init for AV2012 at i2c 0x%02x\n", silabs_tuner->AV2012_Tuner[silabs_tuner->tuner_index]->i2c->address);
