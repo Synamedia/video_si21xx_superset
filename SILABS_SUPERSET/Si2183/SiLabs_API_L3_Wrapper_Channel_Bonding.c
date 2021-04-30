@@ -227,6 +227,8 @@ signed   int   SiLabs_Channel_Bonding_Roles      (SILABS_Channel_Bonding       *
   }
 
   i = 0;
+  slave_index = 0;
+  master_index = 0;
 
   Channel_Bonding->slave  = NULL;
   Channel_Bonding->master = NULL;
