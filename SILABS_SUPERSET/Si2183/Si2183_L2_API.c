@@ -4297,7 +4297,9 @@ signed   int   Si2183_L2_lock_to_carrier   (Si2183_L2_Context *front_end
   signed   int lpf_khz;
 #endif /* DEMOD_DVB_S_S2_DSS */
 #ifdef    DEMOD_DVB_T2
+#ifdef    SiTRACES
   signed int                   plp_index;
+#endif
 #ifdef    _DVB_T2_SIGNALLING_H_
   signed int                   register_value;
   SiLabs_T2_Misc_Signalling    misc;
@@ -4912,7 +4914,6 @@ signed   int   Si2183_L2_lock_to_carrier   (Si2183_L2_Context *front_end
     Si2183_L1_DD_UNCOR(front_end->demod, Si2183_DD_UNCOR_CMD_RST_CLEAR);
     SiTRACE ("Si2183_lock_to_carrier 'lock'  took %3d ms\n"        , searchDelay);
 #ifdef    DEMOD_DVB_T2
-    plp_index = plp_index;
 #ifdef    SiTRACES
     if (front_end->demod->rsp->dd_status.modulation == Si2183_DD_MODE_PROP_MODULATION_DVBT2) {
       Si2183_L1_DVBT2_STATUS   (front_end->demod, Si2183_DVBT2_STATUS_CMD_INTACK_OK);
