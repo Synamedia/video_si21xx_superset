@@ -1043,6 +1043,7 @@ signed   int  SiLabs_API_Text_status_selection      (SILABS_FE_Context *front_en
 /*****************************************************************************************/
 /* Main SW init function (to be called first)                                            */
 signed   char SiLabs_API_SW_Init                    (SILABS_FE_Context *front_end,    signed   int  demodAdd, signed   int  tunerAdd_Ter, signed   int  tunerAdd_Sat);
+signed   char SiLabs_API_SW_Exit                    (SILABS_FE_Context *front_end);
 signed   int  SiLabs_API_Set_Index_and_Tag          (SILABS_FE_Context *front_end,    unsigned char index, const char* tag);
 signed   int  SiLabs_API_Frontend_Chip              (SILABS_FE_Context *front_end,    signed   int  demod_id);
 signed   int  SiLabs_API_Handshake_Setup            (SILABS_FE_Context *front_end,    signed   int  handshake_mode, signed   int  handshake_period_ms);

@@ -1290,6 +1290,20 @@ int     L0_Connect           (L0_Context *i2c, CONNECTION_TYPE connType) {
   return 0;
 }
 /************************************************************************************************************************
+  L0_Disconnect function
+  Use:        Core layer 0 disconnection function
+              Used to close connections at exit to eliminate memory leaks
+  Returns:    1 if close was successful
+************************************************************************************************************************/
+int     L0_Disconnect        (L0_Context *i2c, CONNECTION_TYPE connType) {
+  #ifdef    USB_Capability
+  if (i2c->connectionType == USB) {
+    return Cypress_USB_Close();
+  }
+  #endif /* USB_Capability */
+  return 0;
+}
+/************************************************************************************************************************
   L0_TrackRead function
   Use:        layer 0 initialization function
               Used to toggle the read traces for the related Layer 1 instance.

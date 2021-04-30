@@ -274,6 +274,7 @@ char           Si2183_L2_SW_Init                  (Si2183_L2_Context *front_end
 #endif /* SATELLITE_FRONT_END */
                                    , void *p_context
                                    );
+char           Si2183_L2_SW_Exit                  (Si2183_L2_Context   *front_end);
 signed   int   Si2183_L2_Set_Index_and_Tag        (Si2183_L2_Context   *front_end, unsigned char index, const char* tag);
 void           Si2183_L2_HW_Connect               (Si2183_L2_Context   *front_end, CONNECTION_TYPE mode);
     /*  Locking and status functions */

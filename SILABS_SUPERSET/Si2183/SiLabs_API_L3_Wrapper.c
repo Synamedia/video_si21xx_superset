@@ -3801,6 +3801,22 @@ signed   char SiLabs_API_SW_Init                    (SILABS_FE_Context *front_en
   return 0;
 }
 /************************************************************************************************************************
+  SiLabs_API_SW_Exit function
+  Use:        software deinitialization function
+              Used to deinitialize the DTV demodulator and tuner structures
+  Behavior:   This function performs all the steps necessary to deinitialize the demod and tuner instances
+  Parameter:  front_end, a pointer to the SILABS_FE_Context context to be deinitialized
+  Return:     1 if successful, 0 otherwise
+************************************************************************************************************************/
+signed   char SiLabs_API_SW_Exit                    (SILABS_FE_Context *front_end)
+{
+  SiTRACE("API CALL CONFIG: SiLabs_API_SW_Exit                       (front_end);\n");
+#ifdef    Si2183_COMPATIBLE
+  return Si2183_L2_SW_Exit(front_end->Si2183_FE);
+#endif /* Si2183_COMPATIBLE */
+  return 0;
+}
+/************************************************************************************************************************
   SiLabs_API_Set_Index_and_Tag function
   Use:        Front-End index and tag function
               Used to store the frontend index and tag, which will be used in traces called from L3 level

@@ -3467,6 +3467,12 @@ II("SiLabs_API_HW_Connect               (front_end, %d);\n", mode);
 
   while (Silabs_demoloop(""));
 
+#ifdef    USB_Capability
+  if (mode == USB) {
+    L0_Disconnect(i2c, mode);
+  }
+#endif /* USB_Capability */
+  SiLabs_API_SW_Exit(front_end);
   exit(0);
 
   return 0;

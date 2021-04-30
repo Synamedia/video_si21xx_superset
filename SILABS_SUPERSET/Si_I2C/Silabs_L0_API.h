@@ -246,6 +246,7 @@ extern "C" {
 
     void             L0_Init              (L0_Context* i2c); /* initialize the Layer 0 DLL. It sets the layer 0 context parameters to startup values. It must be called first. It is automatically called by the Layer 1 init function.*/
     signed   int     L0_Connect           (L0_Context* i2c, CONNECTION_TYPE connType); /* Select the connection mode */
+    signed   int     L0_Disconnect        (L0_Context* i2c, CONNECTION_TYPE connType); /* Disconnect */
     const    char*   L0_InterfaceType     (L0_Context* i2c);
     signed   int     L0_SetAddress        (L0_Context* i2c, unsigned int add, int addSize); /* set the IP's i2c address. It must be called only once at startup, as the IP's address is not expected to change over time.*/
     signed   int     L0_ReadBytes         (L0_Context* i2c, unsigned int iI2CIndex, int iNbBytes, unsigned char *pbtDataBuffer) ;/* read  iNbBytes bytes from the IP. A buffer large enough to hold the values needs to be reserved by the upper layer.*/

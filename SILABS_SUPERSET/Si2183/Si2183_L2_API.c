@@ -3137,6 +3137,22 @@ char          Si2183_L2_SW_Init            (Si2183_L2_Context *front_end
     return 1;
 }
 /************************************************************************************************************************
+  Si2183_L2_SW_Exit function
+  Use:        software deinitialization function
+              Used to deinitialize the Si2183 and tuner structures
+  Behavior:   This function frees dynamically allocated memory pointed to by the Si2183 and tuner instances
+  Parameter:  front_end, a pointer to the Si2183_L2_Context context to be deinitialized
+  Return:     1
+************************************************************************************************************************/
+char          Si2183_L2_SW_Exit            (Si2183_L2_Context *front_end)
+{
+    SiTRACE_X("Si2183_L2_SW_Exit starting...\n");
+    free(front_end->demod->fw_table);
+    free(front_end->demod->spi_table);
+    SiTRACE("Si2183_L2_SW_Exit complete\n");
+    return 1;
+}
+/************************************************************************************************************************
   Si2183_L2_Set_Index_and_Tag function
   Use:        Front-End index and tag function
               Used to store the frontend index and tag, which will be used in traces called from L2 level
