@@ -89,8 +89,8 @@ signed   int   SiLabs_SW_config_possibilities  (char *config_macros);
 #define MACRO_NAME_board_demod(board,demod)                                     MACRO_STRING(board##_##demod)
 #define MACRO_NAME_board_tuner_demod(board,tuner,demod)                         MACRO_STRING(board##_##tuner##_##demod)
 
-#define MACRO_SPRINTF_board_demod(board,demod)                                  sprintf(config_macros, "%s\n  %s", config_macros, MACRO_NAME_board_demod(board,demod)             ); macro_count++;
-#define MACRO_SPRINTF_board_tuner_demod(board,tuner,demod)                      sprintf(config_macros, "%s\n  %s", config_macros, MACRO_NAME_board_tuner_demod(board,tuner,demod) ); macro_count++;
+#define MACRO_SPRINTF_board_demod(board,demod)                                  pBuffer += sprintf(pBuffer, "\n  %s", MACRO_NAME_board_demod(board,demod)             ); macro_count++;
+#define MACRO_SPRINTF_board_tuner_demod(board,tuner,demod)                      pBuffer += sprintf(pBuffer, "\n  %s", MACRO_NAME_board_tuner_demod(board,tuner,demod) ); macro_count++;
 
 #define MACRO_STRCMP_board_demod(board,demod,chip_code)                         if ( strcmp_nocase( macro_name, MACRO_NAME_board_demod(board,demod))             ==0) { board(chip_code); return chip_code; }
 #define MACRO_STRCMP_board(board,chip_code)                                     if ( strcmp_nocase( macro_name, MACRO_STRING(board))                             ==0) { board; return chip_code; }

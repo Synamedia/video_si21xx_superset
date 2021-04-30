@@ -264,139 +264,141 @@ signed   int   SiLabs_SW_config_from_macro     (char *macro_name)    {
 ************************************************************************************************************************/
 signed   int   SiLabs_SW_config_possibilities  (char *config_macros) {
   signed   int macro_count;
+  char *pBuffer;
   sprintf(config_macros, "%s", "");
   macro_count = 0;
+  pBuffer = config_macros + strlen (config_macros);
 
 #ifdef    KNOWN_MACROS_FOR_SILABS_EVBs
-  sprintf(config_macros,   "%s\n-----------SiLabs EVB Macros-------"      , config_macros);
+  pBuffer += sprintf(pBuffer,   "\n-----------SiLabs EVB Macros-------");
           KNOWN_MACROS_FOR_SILABS_EVBs
 #endif /* KNOWN_MACROS_FOR_SILABS_EVBs */
 
 #ifdef    MACROS_FOR_SINGLE_FRONTENDS
-  sprintf(config_macros,   "%s\n-----------single-----------"      , config_macros);
+  pBuffer += sprintf(pBuffer,   "\n-----------single-----------");
  #ifdef    SW_INIT_Si2166B_AV2018
-  sprintf(config_macros, "%s\n  Si2166B_AV2018"          , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si2166B_AV2018"); macro_count++;
  #endif /* SW_INIT_Si2166B_AV2018 */
  #ifdef    SW_INIT_Si2176_DVBTC_DC_Rev1_0
-  sprintf(config_macros, "%s\n  Si2176_DVBTC_DC_Rev1_0"          , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si2176_DVBTC_DC_Rev1_0"); macro_count++;
  #endif /* SW_INIT_Si2176_DVBTC_DC_Rev1_0 */
  #ifdef    SW_INIT_Si216x_EVB_Rev3_0_Si2164
-  sprintf(config_macros, "%s\n  Si216x_EVB_Rev3_0_Si2164"        , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si216x_EVB_Rev3_0_Si2164"); macro_count++;
  #endif /* SW_INIT_Si216x_EVB_Rev3_0_Si2164 */
  #ifdef    SW_INIT_Si216x_EVB_Rev3_0_Si2167B
-  sprintf(config_macros, "%s\n  Si216x_EVB_Rev3_0_Si2167B"       , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si216x_EVB_Rev3_0_Si2167B"); macro_count++;
  #endif /* SW_INIT_Si216x_EVB_Rev3_0_Si2167B */
  #ifdef    SW_INIT_Si216x_EVB_Rev3_0_Si2169
-  sprintf(config_macros, "%s\n  Si216x_EVB_Rev3_0_Si2169"        , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si216x_EVB_Rev3_0_Si2169"); macro_count++;
  #endif /* SW_INIT_Si216x_EVB_Rev3_0_Si2169 */
  #ifdef    SW_INIT_Platform_2010_Rev1_0_Si2183
-  sprintf(config_macros, "%s\n  Platform_2010_Rev1_0_Si2183"        , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Platform_2010_Rev1_0_Si2183"); macro_count++;
  #endif /* SW_INIT_Platform_2010_Rev1_0_Si2183 */
  #ifdef    SW_INIT_Si216x_EVB_Rev3_0_Si2183
-  sprintf(config_macros, "%s\n  Si216x_EVB_Rev3_0_Si2183"        , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si216x_EVB_Rev3_0_Si2183"); macro_count++;
  #endif /* SW_INIT_Si216x_EVB_Rev3_0_Si2183 */
  #ifdef    SW_INIT_Si216x_SOC_EVB_Rev1_0_Si2178_Si2164
-  sprintf(config_macros, "%s\n  Si216x_SOC_EVB_Rev1_0_Si2178_Si2164"    , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si216x_SOC_EVB_Rev1_0_Si2178_Si2164"); macro_count++;
  #endif /* SW_INIT_Si216x_SOC_EVB_Rev1_0_Si2178_Si2164 */
  #ifdef    SW_INIT_Si216x_SOC_EVB_Rev1_0_Si2178B_Si2164
-  sprintf(config_macros, "%s\n  Si216x_SOC_EVB_Rev1_0_Si2178B_Si2164"    , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si216x_SOC_EVB_Rev1_0_Si2178B_Si2164"); macro_count++;
  #endif /* SW_INIT_Si216x_SOC_EVB_Rev1_0_Si2178B_Si2164 */
  #ifdef    SW_INIT_Si216x_SOC_EVB_Rev1_0_Si2178_Si2183
-  sprintf(config_macros, "%s\n  Si216x_SOC_EVB_Rev1_0_Si2178_Si2183"    , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si216x_SOC_EVB_Rev1_0_Si2178_Si2183"); macro_count++;
  #endif /* SW_INIT_Si216x_SOC_EVB_Rev1_0_Si2178_Si2183 */
  #ifdef    SW_INIT_Si216x_SOC_EVB_Rev1_0_Si2178B_Si2183
-  sprintf(config_macros, "%s\n  Si216x_SOC_EVB_Rev1_0_Si2178B_Si2183"    , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si216x_SOC_EVB_Rev1_0_Si2178B_Si2183"); macro_count++;
  #endif /* SW_INIT_Si216x_SOC_EVB_Rev1_0_Si2178B_Si2183 */
  #ifdef    SW_INIT_Si216x_SOC_EVB_Rev1_0_Si2178_Si2164_Airoha
-  sprintf(config_macros, "%s\n  Si216x_SOC_EVB_Rev1_0_Si2178_Si2164_Airoha"    , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si216x_SOC_EVB_Rev1_0_Si2178_Si2164_Airoha"); macro_count++;
  #endif /* SW_INIT_Si216x_SOC_EVB_Rev1_0_Si2178_Si2164_Airoha */
  #ifdef    SW_INIT_Si2169_67_76_EVB_Rev1_1_Si2169
-  sprintf(config_macros, "%s\n  Si2169_67_76_EVB_Rev1_1_Si2169"  , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si2169_67_76_EVB_Rev1_1_Si2169"); macro_count++;
  #endif /* SW_INIT_Si2169_67_76_EVB_Rev1_1_Si2169 */
  #ifdef    SW_INIT_Si2169_67_76_EVB_Rev1_1_Si2167A10
-  sprintf(config_macros, "%s\n  Si2169_67_76_EVB_Rev1_1_Si2167A10" , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si2169_67_76_EVB_Rev1_1_Si2167A10"); macro_count++;
  #endif /* SW_INIT_Si2169_67_76_EVB_Rev1_1_Si2167A10 */
  #ifdef    SW_INIT_Si2169_67_76_EVB_Rev1_1_Si2167B
-  sprintf(config_macros, "%s\n  Si2169_67_76_EVB_Rev1_1_Si2167B" , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si2169_67_76_EVB_Rev1_1_Si2167B"); macro_count++;
  #endif /* SW_INIT_Si2169_67_76_EVB_Rev1_1_Si2167B */
  #ifdef    SW_INIT_Si2169_67_76_EVB_Rev1_1_Si2164
-  sprintf(config_macros, "%s\n  Si2169_67_76_EVB_Rev1_1_Si2164" , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si2169_67_76_EVB_Rev1_1_Si2164"); macro_count++;
  #endif /* SW_INIT_Si2169_67_76_EVB_Rev1_1_Si2164 */
  #ifdef    SW_INIT_Si216x_SOC_EVB_Rev1_0_Si2178_Si2167B_Airoha
-  sprintf(config_macros, "%s\n  Si216x_SOC_EVB_Rev1_0_Si2178_Si2167B_Airoha" , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si216x_SOC_EVB_Rev1_0_Si2178_Si2167B_Airoha"); macro_count++;
  #endif /* SW_INIT_Si216x_SOC_EVB_Rev1_0_Si2178_Si2167B_Airoha */
  #ifdef    SW_INIT_Si216x_8x_EVB_AIR_Rev1_0_Si2167B
-  sprintf(config_macros, "%s\n  Si216x_8x_EVB_AIR_Rev1_0_Si2167B" , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si216x_8x_EVB_AIR_Rev1_0_Si2167B"); macro_count++;
  #endif /* SW_INIT_Si216x_8x_EVB_AIR_Rev1_0_Si2167B */
  #ifdef    SW_INIT_Si2166B_EVB_Rev1_0_66B
-  sprintf(config_macros, "%s\n  Si2166B_EVB_Rev1_0_66B" , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si2166B_EVB_Rev1_0_66B"); macro_count++;
  #endif /* SW_INIT_Si2166B_EVB_Rev1_0_66B */
-  sprintf(config_macros,   "%s\n-----------single(TER-only)--"      , config_macros);
+  pBuffer += sprintf(pBuffer,   "\n-----------single(TER-only)--");
  #ifdef    SW_INIT_Si217USB_MB_Rev1_4_Si2168
-  sprintf(config_macros, "%s\n  Si217USB_MB_Rev1_4_Si2168"          , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si217USB_MB_Rev1_4_Si2168"); macro_count++;
  #endif /* SW_INIT_Si217USB_MB_Rev1_4_Si2168 */
  #ifdef    SW_INIT_Si2141_51_DVBT2TC_DC_Rev1_2_Si2168C
-  sprintf(config_macros, "%s\n  Si2141_51_DVBT2TC_DC_Rev1_2_Si2168C", config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si2141_51_DVBT2TC_DC_Rev1_2_Si2168C"); macro_count++;
  #endif /* SW_INIT_Si2141_51_DVBT2TC_DC_Rev1_2_Si2168C */
 #endif /* MACROS_FOR_SINGLE_FRONTENDS */
 
 #ifdef    MACROS_FOR_DUAL_FRONTENDS
-  sprintf(config_macros, "%s\n-----------dual (TER+SAT) ---"      , config_macros);
+  pBuffer += sprintf(pBuffer, "\n-----------dual (TER+SAT) ---");
  #ifdef    SW_INIT_Si216x2_EVB_Rev1_x_Si2164
-  sprintf(config_macros, "%s\n  Si216x2_EVB_Rev1_x_Si2164"       , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si216x2_EVB_Rev1_x_Si2164"); macro_count++;
  #endif /* SW_INIT_Si216x2_EVB_Rev1_x_Si2164 */
  #ifdef    SW_INIT_Si216x2_EVB_Rev1_x_Si2167B
-  sprintf(config_macros, "%s\n  Si216x2_EVB_Rev1_x_Si2167B"      , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si216x2_EVB_Rev1_x_Si2167B"); macro_count++;
  #endif /* SW_INIT_Si216x2_EVB_Rev1_x_Si2167B */
  #ifdef    SW_INIT_Si216x2_EVB_Rev1_x_Si2178_Si2164
-  sprintf(config_macros, "%s\n  Si216x2_EVB_Rev1_x_Si2178_Si2164" , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si216x2_EVB_Rev1_x_Si2178_Si2164"); macro_count++;
  #endif /* SW_INIT_Si216x2_EVB_Rev1_x_Si2178_Si2164 */
  #ifdef    SW_INIT_Si216x2_EVB_Rev1_x_Si2178B_Si2164
-  sprintf(config_macros, "%s\n  Si216x2_EVB_Rev1_x_Si2178B_Si2164", config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si216x2_EVB_Rev1_x_Si2178B_Si2164"); macro_count++;
  #endif /* SW_INIT_Si216x2_EVB_Rev1_x_Si2178B_Si2164 */
  #ifdef    SW_INIT_Si216x2_EVB_Rev1_x_91A_83A
-  sprintf(config_macros, "%s\n  Si216x2_EVB_Rev1_x_91A_83A" , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si216x2_EVB_Rev1_x_91A_83A"); macro_count++;
  #endif /* SW_INIT_Si216x2_EVB_Rev1_x_91A_83A */
  #ifdef    SW_INIT_Si216x2_EVB_Rev1_x_Si2178B_Si2183
-  sprintf(config_macros, "%s\n  Si216x2_EVB_Rev1_x_Si2178B_Si2183", config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si216x2_EVB_Rev1_x_Si2178B_Si2183"); macro_count++;
  #endif /* SW_INIT_Si216x2_EVB_Rev1_x_Si2178B_Si2183 */
  #ifdef    SW_INIT_Si216x2_EVB_Rev2_0_Si2164
-  sprintf(config_macros, "%s\n  Si216x2_EVB_Rev2_0_Si2164"       , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si216x2_EVB_Rev2_0_Si2164"); macro_count++;
  #endif /* SW_INIT_Si216x2_EVB_Rev2_0_Si2164 */
  #ifdef    SW_INIT_Si216x2_EVB_Rev2_0_Si2183
-  sprintf(config_macros, "%s\n  Si216x2_EVB_Rev2_0_Si2183"       , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si216x2_EVB_Rev2_0_Si2183"); macro_count++;
  #endif /* SW_INIT_Si216x2_EVB_Rev2_0_Si2183 */
  #ifdef    SW_INIT_Si21662_EVB_Rev1_0_67B
-  sprintf(config_macros, "%s\n  Si21662_EVB_Rev1_0_67B"      , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si21662_EVB_Rev1_0_67B"); macro_count++;
  #endif /* SW_INIT_Si21662_EVB_Rev1_0_67B */
 
-  sprintf(config_macros, "%s\n-----------dual (TER only) -"      , config_macros);
+  pBuffer += sprintf(pBuffer, "\n-----------dual (TER only) -");
  #ifdef    SW_INIT_Si21682_EVB_Rev1_0_41A_64A
-  sprintf(config_macros, "%s\n  Si21682_EVB_Rev1_0_41A_64A"       , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si21682_EVB_Rev1_0_41A_64A"); macro_count++;
  #endif /* SW_INIT_Si21682_EVB_Rev1_0_41A_64A */
  #ifdef    SW_INIT_Si21682_EVB_Rev1_0_41A_67B
-  sprintf(config_macros, "%s\n  Si21682_EVB_Rev1_0_41A_67B"     , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si21682_EVB_Rev1_0_41A_67B"); macro_count++;
  #endif /* SW_INIT_Si21682_EVB_Rev1_0_41A_67B */
  #ifdef    SW_INIT_Si21682_EVB_Rev1_0_41A_83A
-  sprintf(config_macros, "%s\n  Si21682_EVB_Rev1_0_41A_83A"       , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Si21682_EVB_Rev1_0_41A_83A"); macro_count++;
  #endif /* SW_INIT_Si21682_EVB_Rev1_0_41A_83A */
 
 #endif /* MACROS_FOR_DUAL_FRONTENDS */
 
 #ifdef    MACROS_FOR_TRIPLE_FRONTENDS
-  sprintf(config_macros, "%s\n-----------triple-----------"      , config_macros);
+  pBuffer += sprintf(pBuffer, "\n-----------triple-----------");
 #endif /* MACROS_FOR_TRIPLE_FRONTENDS */
 
 #ifdef    MACROS_FOR_QUAD_FRONTENDS
-  sprintf(config_macros, "%s\n-----------quad-------------"      , config_macros);
+  pBuffer += sprintf(pBuffer, "\n-----------quad-------------");
  #ifdef    SW_INIT_Dual_Si2191_Si216x2_Si2164
-  sprintf(config_macros, "%s\n  Dual_Si2191_Si216x2_Si2164"      , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Dual_Si2191_Si216x2_Si2164"); macro_count++;
  #endif /* SW_INIT_Dual_Si2191_Si216x2_Si2164 */
  #ifdef    SW_INIT_Dual_Si2191_Si216x2_Si2183
-  sprintf(config_macros, "%s\n  Dual_Si2191_Si216x2_Si2183"      , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  Dual_Si2191_Si216x2_Si2183"); macro_count++;
  #endif /* SW_INIT_Dual_Si2191_Si216x2_Si2183 */
  #ifdef    SW_INIT_quad_Si2169A
-  sprintf(config_macros, "%s\n  quad_Si2169A"                    , config_macros); macro_count++;
+  pBuffer += sprintf(pBuffer, "\n  quad_Si2169A"); macro_count++;
  #endif /* SW_INIT_quad_Si2169A */
 #endif /* MACROS_FOR_QUAD_FRONTENDS */
 

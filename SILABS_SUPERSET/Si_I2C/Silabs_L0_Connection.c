@@ -727,31 +727,32 @@ const char *SiTraceConfiguration   (const char *config) {
                     default                : sprintf(trace_message," -output unknown "); break;
                  }
 #if       SiTRACES_FEATURES == SiTRACES_FULL
-                                             sprintf(trace_message,"%s -name %s "        , trace_message, trace_file_name);
+                                             pBuffer = trace_message + strlen(trace_message);
+                                             pBuffer += sprintf(pBuffer,"-name %s ", trace_file_name);
 #endif /* SiTRACES_FEATURES == SiTRACES_FULL */
-                                             sprintf(trace_message,"%s-file "            , trace_message);
-                if (trace_config_files    ) {sprintf(trace_message,"%s on "              , trace_message);}
-                else {                       sprintf(trace_message,"%soff "              , trace_message);}
-                                             sprintf(trace_message,"%s-line "            , trace_message);
-                if (trace_config_lines    ) {sprintf(trace_message,"%s on "              , trace_message);}
-                else {                       sprintf(trace_message,"%soff "              , trace_message);}
-                                             sprintf(trace_message,"%s-function "        , trace_message);
-                if (trace_config_functions) {sprintf(trace_message,"%s on "              , trace_message);}
-                else {                       sprintf(trace_message,"%soff "              , trace_message);}
-                                             sprintf(trace_message,"%s-time "            , trace_message);
-                if (trace_config_time     ) {sprintf(trace_message,"%s on "              , trace_message);}
-                else {                       sprintf(trace_message,"%soff "              , trace_message);}
-                                             sprintf(trace_message,"%s-tags "            , trace_message);
-                if (trace_config_tags     ) {sprintf(trace_message,"%s on "              , trace_message);}
-                else {                       sprintf(trace_message,"%soff "              , trace_message);}
-                                             sprintf(trace_message,"%s-level "           , trace_message);
-                if (trace_config_level    ) {sprintf(trace_message,"%s on "              , trace_message);}
-                else {                       sprintf(trace_message,"%soff "              , trace_message);}
-                                             sprintf(trace_message,"%slevels 0x%02x "    , trace_message, trace_levels);
-                                             sprintf(trace_message,"%s-verbose "         , trace_message);
-                if (trace_config_verbose  ) {sprintf(trace_message,"%s on "              , trace_message);}
-                else {                       sprintf(trace_message,"%soff "              , trace_message);}
-                sprintf(trace_message,"%s\n", trace_message);
+                                             pBuffer += sprintf(pBuffer,"-file ");
+                if (trace_config_files    ) {pBuffer += sprintf(pBuffer," on ");}
+                else {                       pBuffer += sprintf(pBuffer,"off ");}
+                                             pBuffer += sprintf(pBuffer,"-line ");
+                if (trace_config_lines    ) {pBuffer += sprintf(pBuffer," on ");}
+                else {                       pBuffer += sprintf(pBuffer,"off ");}
+                                             pBuffer += sprintf(pBuffer,"-function ");
+                if (trace_config_functions) {pBuffer += sprintf(pBuffer," on ");}
+                else {                       pBuffer += sprintf(pBuffer,"off ");}
+                                             pBuffer += sprintf(pBuffer,"-time ");
+                if (trace_config_time     ) {pBuffer += sprintf(pBuffer," on ");}
+                else {                       pBuffer += sprintf(pBuffer,"off ");}
+                                             pBuffer += sprintf(pBuffer,"-tags ");
+                if (trace_config_tags     ) {pBuffer += sprintf(pBuffer," on ");}
+                else {                       pBuffer += sprintf(pBuffer,"off ");}
+                                             pBuffer += sprintf(pBuffer,"-level ");
+                if (trace_config_level    ) {pBuffer += sprintf(pBuffer," on ");}
+                else {                       pBuffer += sprintf(pBuffer,"off ");}
+                                             pBuffer += sprintf(pBuffer,"levels 0x%02x ", trace_levels);
+                                             pBuffer += sprintf(pBuffer,"-verbose ");
+                if (trace_config_verbose  ) {pBuffer += sprintf(pBuffer," on ");}
+                else {                       pBuffer += sprintf(pBuffer,"off ");}
+                pBuffer += sprintf(pBuffer,"\n");
                 return trace_message;
             }
             else if(!strcmp_nocase_n(array[loop],"-output"  ,7) ) {
@@ -941,9 +942,9 @@ int  L0_StoreError   (const char *message) {
   length_new_msg = (int)strlen(message);
   if ( (length + length_new_msg) >= ERROR_MESSAGE_MAX_LENGH ) {
     stored_error_message[ERROR_MESSAGE_MAX_LENGH-40] = 0x00;
-    length = sprintf(stored_error_message, "%s%s", stored_error_message, "...There are lost errors...\n");
+    length = sprintf(stored_error_message + length, "%s", "...There are lost errors...\n");
   } else {
-    length = sprintf(stored_error_message, "%s%s", stored_error_message, message);
+    length = sprintf(stored_error_message + length, "%s", message);
   }
   return length;
 }
