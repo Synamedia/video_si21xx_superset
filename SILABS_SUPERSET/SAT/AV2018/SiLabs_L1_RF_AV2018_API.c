@@ -350,8 +350,6 @@ int   L1_RF_AV2018_LPF            (AV2018_Context *context, int lpf_khz) {
     /* add 8% margin since the calculated fc of BB Auto-scanning is not very accurate */
     lpf_khz = lpf_khz*108/100;
     /* Bandwidth can be tuned from 4M to 40M */
-    if( lpf_khz< 4000)
-    lpf_khz = 4000;
     if( lpf_khz> 40000)
     lpf_khz = 40000;
     context->LPF = (int)((lpf_khz));

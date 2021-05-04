@@ -174,9 +174,6 @@ limitations under the License.
 signed   int   SiLabs_SAT_Tuner_SW_Init        (SILABS_SAT_TUNER_Context *silabs_tuner, signed   int add) {
   signed   int i;
   signed   int sat_tuner_code;
-  #ifdef    SiTRACES
-    char possible[1000];
-  #endif /* SiTRACES */
   SiTRACE_X("SiLabs_SAT_Tuner_SW_Init\n");
   sat_tuner_code = 0;
 #ifdef    SAT_TUNER_AV2012
@@ -265,11 +262,6 @@ signed   int   SiLabs_SAT_Tuner_SW_Init        (SILABS_SAT_TUNER_Context *silabs
 #endif /* SAT_TUNER_RDA16110E */
   if (sat_tuner_code != 0) {
     SiLabs_SAT_Tuner_Select_Tuner (silabs_tuner, sat_tuner_code, 0);
-  } else {
-  #ifdef    SiTRACES
-    i = SiLabs_SAT_Tuner_Possible_Tuners(silabs_tuner, possible);
-    SiTRACE_X("%d possible SAT tuners via SiLabs_SAT_Tuner: %s\n", i, possible);
-  #endif /* SiTRACES */
   }
   return 0;
 }

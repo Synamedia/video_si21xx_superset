@@ -569,7 +569,6 @@ int Si2151_Init                       (L1_Si2151_Context *api)
 ************************************************************************************************************************/
 int Si2151_UpdateChannelScanFrequency (int freq,int channelsFound)
 {
-  int abort_scan = 0;
   static int previousFrequency;
 /*** Insert user code to display realtime updates of the frequency being scanned and channel status (number found ) **/
 /* add check for user abort here */
@@ -587,10 +586,7 @@ int Si2151_UpdateChannelScanFrequency (int freq,int channelsFound)
   }
   previousFrequency=freq;
 
-  if (abort_scan)
-    return 1;
-  else
-    return 0;
+  return 0;
   }
 /************************************************************************************************************************
   NAME: Si2151_GetRF

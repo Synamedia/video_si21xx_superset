@@ -342,7 +342,6 @@ signed   int   SiLabs_TER_Tuner_SW_Init              (SILABS_TER_TUNER_Context *
   signed   int i;
   signed   int ter_tuner_code;
   #ifdef    SiTRACES
-    char possible[1000];
     SiTRACE("SiLabs_TER_Tuner_SW_Init add 0x%02x\n", add);
   #endif /* SiTRACES */
   ter_tuner_code = 0;
@@ -514,11 +513,6 @@ signed   int   SiLabs_TER_Tuner_SW_Init              (SILABS_TER_TUNER_Context *
     }
     SiTRACE("SiLabs_TER_Tuner_SW_Init TER_Tuner_count %d\n", TER_Tuner_count);
     silabs_tuner->fef_freeze_pin = 1;
-  } else {
-  #ifdef    SiTRACES
-    i = SiLabs_TER_Tuner_Possible_Tuners(silabs_tuner, possible);
-    SiTRACE_X("%d possible TER tuners via SiLabs_TER_Tuner: %s\n", i, possible);
-  #endif /* SiTRACES */
   }
   return 0;
 }

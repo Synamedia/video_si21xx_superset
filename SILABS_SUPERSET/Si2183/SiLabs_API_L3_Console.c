@@ -664,7 +664,6 @@ void          SiLabs_I2C_UserInput_write      (void) {
 
     address   = bytes[0];
     indexSize = 0;
-    if (indexSize <0) return;
     iI2CIndex = 0;
     iNbBytes  = nbArgs-1;
     pbtDataBuffer = (unsigned char*)malloc(sizeof(unsigned char)*iNbBytes);
