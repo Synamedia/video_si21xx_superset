@@ -2009,6 +2009,7 @@ int     L0_WriteString       (L0_Context* i2c, char *writeString) {
     for (i=0; i<iNbBytes; i++) { pbtDataBuffer[i] = bytes[i+1]; }
     L0_SetAddress   (i2c, address, indexSize);
     writeBytes = L0_WriteBytes (i2c, iI2CIndex, iNbBytes, pbtDataBuffer);
+    free(pbtDataBuffer);
 #endif /* LINUX_ST_SDK2_I2C */
     return writeBytes;
 }

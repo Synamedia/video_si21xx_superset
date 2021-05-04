@@ -552,6 +552,7 @@ void          Silabs_UserInput_traces     (void) {
     Silabs_UserInputString("Enter the traces configuration string (-<param> ,<value>): ");
     sprintf(msg, "traces %s", configuration);
     printf("%s", SiTraceConfiguration (msg));
+    free(msg);
 }
 /************************************************************************************************************************
   Silabs_UserInput_traceLevel function
@@ -671,6 +672,7 @@ void          SiLabs_I2C_UserInput_write      (void) {
     L0_SetAddress   (i2c, address, indexSize);
     writeBytes = L0_WriteRawBytes (i2c, iI2CIndex, iNbBytes, pbtDataBuffer);
     if (writeBytes) {printf("%d bytes written\n", writeBytes);} else {printf("Write error!\n");}
+    free(pbtDataBuffer);
 }
 /************************************************************************************************************************
   Silabs_UserInput_freq function
