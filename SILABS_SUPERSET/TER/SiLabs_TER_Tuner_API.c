@@ -586,7 +586,7 @@ signed   int   SiLabs_TER_Tuner_Select_Tuner         (SILABS_TER_TUNER_Context *
   if (ter_tuner_code               == 0x2151 ) {
     silabs_tuner->ter_tuner_code = ter_tuner_code;
     silabs_tuner->tuner_index    = tuner_index;
-    if (tuner_index > Si2151_TUNER_COUNT) {silabs_tuner->tuner_index = 0;}
+    if (tuner_index >= Si2151_TUNER_COUNT) {silabs_tuner->tuner_index = 0;}
     silabs_tuner->i2c            = silabs_tuner->Si2151_Tuner[silabs_tuner->tuner_index]->i2c;
   }
 #endif /* TER_TUNER_Si2151 */
