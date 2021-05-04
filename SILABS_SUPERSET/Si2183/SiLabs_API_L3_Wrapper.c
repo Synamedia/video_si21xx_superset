@@ -7046,9 +7046,9 @@ signed   int  SiLabs_API_Select_PLP                 (SILABS_FE_Context *front_en
         front_end->Si2183_FE->demod->cmd->dvbc2_ds_plp_select.plp_id      = plp_id;
       }
       if (Si2183_L1_DVBC2_DS_PLP_SELECT(front_end->Si2183_FE->demod,
-                                        front_end->Si2183_FE->demod->cmd->dvbc2_ds_plp_select.ds_id,
+                                        front_end->Si2183_FE->demod->cmd->dvbc2_ds_plp_select.plp_id,
                                         front_end->Si2183_FE->demod->cmd->dvbc2_ds_plp_select.id_sel_mode,
-                                        front_end->Si2183_FE->demod->cmd->dvbc2_ds_plp_select.plp_id) != NO_Si2183_ERROR) {
+                                        front_end->Si2183_FE->demod->cmd->dvbc2_ds_plp_select.ds_id) != NO_Si2183_ERROR) {
         SiTRACE("Si2183_L1_DVBC2_DS_PLP_SELECT error when selecting PLP %d!\n", plp_id);
         SiERROR("Si2183_L1_DVBT2_DS_PLP_SELECT error!\n");
         return -1;
