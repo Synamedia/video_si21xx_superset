@@ -716,10 +716,10 @@ void Si2183_plot                             (Si2183_L2_Context   *front_end, co
   int analysis_bw;
   int analyzis_start_freq;
   int analyzis_stop_freq;
-  int standard_specific_spectrum_offset;
-  int standard_specific_spectrum_scaling;
+  int standard_specific_spectrum_offset = 0;
+  int standard_specific_spectrum_scaling = 0;
   int standard_specific_freq_unit;
-  int nb_skip_first_words;
+  int nb_skip_first_words = 0;
   L1_Si2183_Context *api;
 
 #ifdef   Si2183_READ

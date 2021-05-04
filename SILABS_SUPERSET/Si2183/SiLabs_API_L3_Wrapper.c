@@ -5635,7 +5635,7 @@ signed   int  SiLabs_API_Get_TS_Dividers            (SILABS_FE_Context *front_en
 ************************************************************************************************************************/
 signed   int  Silabs_API_TS_Tone_Cancel             (SILABS_FE_Context* front_end,    signed   int on_off)
 {
-    signed   int return_code;
+    signed   int return_code = 0;
 #ifdef    TERRESTRIAL_FRONT_END
     unsigned int DIV_A;
     unsigned int DIV_B;
