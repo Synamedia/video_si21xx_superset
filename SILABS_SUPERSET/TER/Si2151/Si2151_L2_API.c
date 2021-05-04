@@ -597,7 +597,11 @@ int Si2151_UpdateChannelScanFrequency (int freq,int channelsFound)
 ************************************************************************************************************************/
 int  Si2151_GetRF                     (L1_Si2151_Context *api)
 {
-    Si2151_L1_TUNER_STATUS (api);
+    int return_code;
+    if ((return_code = Si2151_L1_TUNER_STATUS (api)) != NO_Si2151_ERROR)
+    {
+      SiTRACE ("Si2151_L1_TUNER_STATUS error = %s\n", Si2151_L1_API_ERROR_TEXT(return_code));
+    }
     return api->rsp->tuner_status.freq;
 }
  /************************************************************************************************************************

@@ -316,8 +316,12 @@ char*            Si2183_L1_API_TAG_TEXT(void) { return (char *)"V0.3.5.1";}
 ************************************************************************************************************************/
 int Si2183_L1_Status            (L1_Si2183_Context *api)
 {
+    int return_code;
     /* Call the demod global status function */
-    Si2183_L1_DD_STATUS (api, Si2183_DD_STATUS_CMD_INTACK_OK);
+    if ((return_code = Si2183_L1_DD_STATUS (api, Si2183_DD_STATUS_CMD_INTACK_OK)) != NO_Si2183_ERROR)
+    {
+      SiTRACE ("Si2183_L1_DD_STATUS error = %s\n", Si2183_L1_API_ERROR_TEXT(return_code));
+    }
 
     /* Call the standard-specific status function */
     switch (api->rsp->dd_status.modulation)

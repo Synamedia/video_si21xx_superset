@@ -719,7 +719,9 @@ CUSTOM_Constel_Enum Silabs_UserInput_qam     (CUSTOM_Standard_Enum standard)
     {
       case SILABS_DVB_C  : {
         printf("DVB-C qam (auto qam16 qam32 qam64 qam128 qam256)?  ");
-        scanf("%s",qam);
+        if (scanf("%s",qam) < 0) {
+          SiTRACE("scanf error\n");
+        }
         if (strcmp_nocase(qam,"auto"  )==0) { return SILABS_QAMAUTO;}
         if (strcmp_nocase(qam,"qam16" )==0) { return SILABS_QAM16  ;}
         if (strcmp_nocase(qam,"qam32" )==0) { return SILABS_QAM32  ;}
@@ -730,7 +732,9 @@ CUSTOM_Constel_Enum Silabs_UserInput_qam     (CUSTOM_Standard_Enum standard)
       }
       case SILABS_MCNS   : {
         printf("MCNS qam (auto qam64 qam256)?  ");
-        scanf("%s",qam);
+        if (scanf("%s",qam) < 0) {
+          SiTRACE("scanf error\n");
+        }
         if (strcmp_nocase(qam,"auto"  )==0) { return SILABS_QAMAUTO;}
         if (strcmp_nocase(qam,"qam64" )==0) { return SILABS_QAM64  ;}
         if (strcmp_nocase(qam,"qam256")==0) { return SILABS_QAM256 ;}
@@ -979,7 +983,9 @@ signed   long Silabs_UserInput_SR_bps        (void)
   float sr;
   long sr_bps;
   printf("Symbol rate (in Msymb/s)? ");
-  scanf("%f",&sr);
+  if (scanf("%f",&sr) < 0) {
+    SiTRACE("scanf error\n");
+  }
   sr_bps = (long)(sr*1000000);
   printf("     --> SR in baud %ld \n ",sr_bps);
   return sr_bps;

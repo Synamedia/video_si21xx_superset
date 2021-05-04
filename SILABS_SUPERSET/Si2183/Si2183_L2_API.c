@@ -8133,15 +8133,21 @@ demod c2 all                           : displays the c2 dataslice and plp info 
       if (strcmp_nocase(sub_cmd,"disable") == 0) { Si2183_L2_Tuner_I2C_Disable(front_end); }
       testBuffer[0] = 0xff;
       testBuffer[1] = 0x00;
-      L0_WriteCommandBytes(front_end->demod->i2c, 2, testBuffer);
+      if (L0_WriteCommandBytes(front_end->demod->i2c, 2, testBuffer) != 2) {
+        SiTRACE("Error writing passthru initial bytes\n");
+      }
       testBuffer[0] = 0xc0;
       testBuffer[1] = 0x0d;
-      L0_WriteCommandBytes(front_end->demod->i2c, 2, testBuffer);
+      if (L0_WriteCommandBytes(front_end->demod->i2c, 2, testBuffer) != 2) {
+        SiTRACE("Error writing passthru subsequent bytes\n");
+      }
       L0_ReadBytes        (front_end->demod->i2c, 0xc00d, 1, testBuffer);
       passthru_enable = testBuffer[0]&0x01;
       testBuffer[0] = 0xfe;
       testBuffer[1] = 0x00;
-      L0_WriteCommandBytes(front_end->demod->i2c, 2, testBuffer);
+      if (L0_WriteCommandBytes(front_end->demod->i2c, 2, testBuffer) != 2) {
+        SiTRACE("Error writing passthru final bytes\n");
+      }
       *retdval = (double)passthru_enable;
       sprintf(*rettxt, "passthru enable %d\n", passthru_enable);
       return 1;
@@ -8359,8 +8365,9 @@ demod c2 all                           : displays the c2 dataslice and plp info 
         /* Try closing the i2c passthru '65D style' and retest */
         L0_SetAddress(front_end->demod->i2c, i, 0);
         testBuffer[0] = 0x00; testBuffer[1] = 0x01; testBuffer[2] = 0x01;
-        L0_WriteCommandBytes (front_end->demod->i2c, 3,  testBuffer);
-
+        if (L0_WriteCommandBytes (front_end->demod->i2c, 3,  testBuffer) != 3) {
+          SiTRACE("Error writing chip_detect passthru bytes\n");
+        }
         L0_SetAddress(front_end->demod->i2c, 0xC0, 0);
         c = L0_ReadCommandBytes (front_end->demod->i2c, 1, testBuffer);
         SiTRACE("Bytes read from tuner at 0x%02x using '65D' connection: %d\n", front_end->demod->i2c->address, c);
@@ -8368,7 +8375,9 @@ demod c2 all                           : displays the c2 dataslice and plp info 
 
         if ( c == 1) {
           testBuffer[0] = 0x00; testBuffer[1] = 0x01; testBuffer[2] = 0x00;
-          L0_WriteCommandBytes (front_end->demod->i2c, 3,  testBuffer);
+          if (L0_WriteCommandBytes (front_end->demod->i2c, 3,  testBuffer) != 3) {
+            SiTRACE("Error writing chip_detect bytes\n");
+          }
           sprintf(*rettxt, "65D" );
           return 1;
         }
@@ -8558,11 +8567,17 @@ demod c2 all                           : displays the c2 dataslice and plp info 
       return 1;
     }
     if (strcmp_nocase(cmd,"spi_regs"    ) == 0) {
-      testBuffer[0]=0xff; testBuffer[1]=0x00; L0_WriteCommandBytes(front_end->demod->i2c, 2, testBuffer);
+      testBuffer[0]=0xff; testBuffer[1]=0x00;
+      if (L0_WriteCommandBytes(front_end->demod->i2c, 2, testBuffer) != 2) {
+        SiTRACE("Error writing spi_regs bytes\n");
+      }
       front_end->demod->i2c->indexSize  = 2;
       sprintf(*rettxt, "spi_crc_status %ld spi_state %ld ", L0_ReadRegister(front_end->demod->i2c, 0x55, 0, 1, 0) , L0_ReadRegister(front_end->demod->i2c, 0x57, 0, 3, 0));
       front_end->demod->i2c->indexSize  = 0;
-      testBuffer[0]=0xfe; testBuffer[1]=0x00; L0_WriteCommandBytes(front_end->demod->i2c, 2, testBuffer);
+      testBuffer[0]=0xfe; testBuffer[1]=0x00;
+      if (L0_WriteCommandBytes(front_end->demod->i2c, 2, testBuffer) != 2) {
+        SiTRACE("Error writing spi_regs final bytes\n");
+      }
       return 1;
     }
     if (strcmp_nocase(cmd,"health_check") == 0) {
