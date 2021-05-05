@@ -2307,6 +2307,9 @@ signed   int  SiLabs_Scan_Check_And_Add_Carrier(SILABS_FE_Context *frontend, sig
 /*    printf (" SSI %d, SQI %d\n", custom_status->SSI, custom_status->SQI);*/
   }
   carrier_index = SiLabs_Scan_Table_AddOneCarrier (standard, freq, bandwidth_Hz, stream, symbol_rate_bps, constellation, polarization, band, data_slice_id, plp_id, T2_base_lite);
+  if (carrier_index < 0) {
+    return -1;
+  }
   SiLabs_Scan_Table_AddCarrierQuality(carrier_index, custom_status->SSI, custom_status->SQI);
   if (custom_status->fec_lock) {
     printf("%c", 0x07);
