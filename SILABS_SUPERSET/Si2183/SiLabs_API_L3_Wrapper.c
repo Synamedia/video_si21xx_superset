@@ -3233,7 +3233,7 @@ signed   int  SiLabs_API_SAT_Tuner_status           (SILABS_FE_Context* front_en
   sat_tuner = NULL;
   SiTRACE("API CALL STATUS: SiLabs_API_SAT_Tuner_status (front_end, &status);\n");
 #ifdef    Si2183_COMPATIBLE
-  if (front_end->chip ==   0x2183 ) { sat_tuner = front_end->Si2183_FE->tuner_sat; }
+  if (front_end->chip ==   0x2183 ) { sat_tuner = front_end->Si2183_FE->tuner_sat; } else { SiTRACE("Unknown chip\n"); return 0; }
 #endif /* Si2183_COMPATIBLE */
 #endif /* SAT_TUNER_SILABS */
   front_end = front_end; /* To avoid compiler warning */
