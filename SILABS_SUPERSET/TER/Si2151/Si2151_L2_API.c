@@ -1070,7 +1070,6 @@ int Si2151_ATV_Channel_Scan_PAL       (L1_Si2151_Context *api, unsigned long ran
     {
           /* we didn't find any channels goto flowchart section B */
             freq += SCAN_INTERVAL;
-            continue;
 
             /* if user requested abort then break from the loop */
             if (Si2151_UpdateChannelScanFrequency(freq, CHANNEL_NOT_FOUND))

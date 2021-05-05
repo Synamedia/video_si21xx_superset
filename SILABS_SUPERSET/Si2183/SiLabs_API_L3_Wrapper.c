@@ -8622,10 +8622,11 @@ signed   int  SiLabs_API_Cypress_Ports              (SILABS_FE_Context *front_en
   L0_Cypress_Process("output_enable_io_port", "d", (double)OED, &retdval, &entry);
   L0_Cypress_Process("write_io_port"        , "d", (double)IOD, &retdval, &entry);
   return (IOA<<24)+(IOB<<16)+(IOD<<0);
-#endif /* USB_Capability */
+#else  /* USB_Capability */
   front_end = front_end;        /* To avoid compiler warning */
   IOA=OEA=IOB=OEB=IOD=OED=0x00; /* To avoid compiler warning if not used */
   return (IOA<<24)+(IOB<<16)+(IOD<<0);
+#endif /* USB_Capability */
 }
 /************************************************************************************************************************
   NAME: SiLabs_API_Demod_reset

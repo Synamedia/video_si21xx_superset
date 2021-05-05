@@ -198,25 +198,31 @@ unsigned char    Si2183_L1_API_Init      (L1_Si2183_Context *api, signed   int a
   /* Initial standard selection based on compilation flags */
   #ifdef    DEMOD_DVB_T
     api->standard =  Si2183_DD_MODE_PROP_MODULATION_DVBT ; goto initial_standard_set;
-  #endif /* DEMOD_DVB_T */
+  #else  /* DEMOD_DVB_T */
   #ifdef    DEMOD_DVB_T2
     api->standard =  Si2183_DD_MODE_PROP_MODULATION_DVBT2; goto initial_standard_set;
-  #endif /* DEMOD_DVB_T2 */
+  #else  /* DEMOD_DVB_T2 */
   #ifdef    DEMOD_ISDB_T
     api->standard =  Si2183_DD_MODE_PROP_MODULATION_ISDBT; goto initial_standard_set;
-  #endif /* DEMOD_ISDB_T */
+  #else  /* DEMOD_ISDB_T */
   #ifdef    DEMOD_DVB_C
     api->standard =  Si2183_DD_MODE_PROP_MODULATION_DVBC ; goto initial_standard_set;
-  #endif /* DEMOD_DVB_C  */
+  #else  /* DEMOD_DVB_C  */
   #ifdef    DEMOD_DVB_C2
     api->standard =  Si2183_DD_MODE_PROP_MODULATION_DVBC2; goto initial_standard_set;
-  #endif /* DEMOD_DVB_C2 */
+  #else  /* DEMOD_DVB_C2 */
   #ifdef    DEMOD_MCNS
     api->standard =  Si2183_DD_MODE_PROP_MODULATION_MCNS ; goto initial_standard_set;
-  #endif /* DEMOD_MCNS */
+  #else  /* DEMOD_MCNS */
 #ifdef    SATELLITE_FRONT_END
     api->standard =  Si2183_DD_MODE_PROP_MODULATION_DVBS ; goto initial_standard_set;
 #endif /* SATELLITE_FRONT_END */
+  #endif /* DEMOD_MCNS */
+  #endif /* DEMOD_DVB_C2 */
+  #endif /* DEMOD_DVB_C */
+  #endif /* DEMOD_ISDB_T */
+  #endif /* DEMOD_DVB_T2 */
+  #endif /* DEMOD_DVB_T */
 
     initial_standard_set:
 

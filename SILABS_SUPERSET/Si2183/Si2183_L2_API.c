@@ -2823,10 +2823,11 @@ signed   int Si2183_DVB_C_max_lock_ms   (L1_Si2183_Context *api, signed   int co
   swt  = (swt/100) + 1;
   SiTRACE("symbol_rate_baud %8d, constellation %2d, afc_khz %3d, swt %6d, swt_coeff %2d DVB_C_max_lock_ms %d\n", symbol_rate_baud, constellation, afc_khz, swt, swt_coeff, (int)(720000000/symbol_rate_baud + swt*swt_coeff)+ 100 );
   return (int)(720000000/symbol_rate_baud + swt*swt_coeff)+ 100;
-#endif /* DEMOD_DVB_C */
+#else  /* DEMOD_DVB_C */
   /* To avoid compilation error when not compiling for DVB_C */
   constellation = symbol_rate_baud = 5000;
   return constellation;
+#endif /* DEMOD_DVB_C */
 }
 /*****************************************************************************************/
 /*               SiLabs demodulator API functions (demod and tuner)                      */
