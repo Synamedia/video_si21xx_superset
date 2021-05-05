@@ -1302,10 +1302,13 @@ signed   int  Silabs_hierarchyCode                  (SILABS_FE_Context* front_en
   Parameter:  front_end, a pointer to the SILABS_FE_Context context
   Parameter:  pilot_pattern, the value used by the top-level application (configurable in CUSTOM_Pilot_Pattern_Enum)
 ************************************************************************************************************************/
-signed   int  Silabs_pilotPatternCode               (SILABS_FE_Context* front_end,    CUSTOM_Pilot_Pattern_Enum     pilot_pattern)
+#if       defined(Si2183_COMPATIBLE) && defined(DEMOD_DVB_T2)
+# define MAYBE_UNUSED
+#else  /* defined(Si2183_COMPATIBLE) && defined(DEMOD_DVB_T2) */
+# define MAYBE_UNUSED __attribute__((unused))
+#endif /* defined(Si2183_COMPATIBLE) && defined(DEMOD_DVB_T2) */
+signed   int  Silabs_pilotPatternCode               (SILABS_FE_Context* front_end MAYBE_UNUSED,    CUSTOM_Pilot_Pattern_Enum     pilot_pattern MAYBE_UNUSED)
 {
-  front_end->chip = front_end->chip; /* To avoid compiler warning */
-  pilot_pattern   = pilot_pattern  ; /* To avoid compiler warning */
 #ifdef    Si2183_COMPATIBLE
 #ifdef    DEMOD_DVB_T2
   if (front_end->chip ==   0x2183 ) {
@@ -1332,10 +1335,8 @@ signed   int  Silabs_pilotPatternCode               (SILABS_FE_Context* front_en
   Parameter:  front_end, a pointer to the SILABS_FE_Context context
   Parameter:  t2_version, the value used by the top-level application
 ************************************************************************************************************************/
-signed   int  Silabs_T2VersionCode                  (SILABS_FE_Context* front_end,    CUSTOM_Pilot_T2_version_Enum  t2_version)
+signed   int  Silabs_T2VersionCode                  (SILABS_FE_Context* front_end MAYBE_UNUSED,    CUSTOM_Pilot_T2_version_Enum  t2_version MAYBE_UNUSED)
 {
-  front_end->chip = front_end->chip; /* To avoid compiler warning */
-  t2_version      = t2_version     ; /* To avoid compiler warning */
 #ifdef    Si2183_COMPATIBLE
 #ifdef    DEMOD_DVB_T2
   if (front_end->chip ==   0x2183 ) {
@@ -1788,10 +1789,8 @@ signed   int  Custom_hierarchyCode                  (SILABS_FE_Context* front_en
   Parameter:  front_end, a pointer to the SILABS_FE_Context context
   Parameter:  pilot_pattern, the value used by the top-level application (as returned by the demod)
 ************************************************************************************************************************/
-signed   int  Custom_pilotPatternCode               (SILABS_FE_Context* front_end,    signed   int pilot_pattern)
+signed   int  Custom_pilotPatternCode               (SILABS_FE_Context* front_end MAYBE_UNUSED,    signed   int pilot_pattern MAYBE_UNUSED)
 {
-  front_end->chip = front_end->chip; /* To avoid compiler warning if not supported */
-  pilot_pattern   = pilot_pattern  ; /* To avoid compiler warning if not supported */
 #ifdef    Si2183_COMPATIBLE
 #ifdef    DEMOD_DVB_T2
   if (front_end->chip ==   0x2183 ) {
@@ -1818,10 +1817,8 @@ signed   int  Custom_pilotPatternCode               (SILABS_FE_Context* front_en
   Parameter:  front_end, a pointer to the SILABS_FE_Context context
   Parameter:  t2_version, the value used by the top-level application (as returned by the demod)
 ************************************************************************************************************************/
-signed   int  Custom_T2VersionCode                  (SILABS_FE_Context* front_end,    signed   int t2_version)
+signed   int  Custom_T2VersionCode                  (SILABS_FE_Context* front_end MAYBE_UNUSED,    signed   int t2_version MAYBE_UNUSED)
 {
-  front_end->chip = front_end->chip; /* To avoid compiler warning if not supported */
-  t2_version      = t2_version     ; /* To avoid compiler warning if not supported */
 #ifdef    Si2183_COMPATIBLE
 #ifdef    DEMOD_DVB_T2
   if (front_end->chip ==   0x2183 ) {
