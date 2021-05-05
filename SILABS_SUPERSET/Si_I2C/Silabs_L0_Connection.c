@@ -1709,7 +1709,7 @@ long    L0_ReadRegister      (L0_Context *i2c, unsigned int iI2CIndex, unsigned 
     return 0;
   }
   iVal = 0;
-  for (i = 0; i < iNbBytes; i++) {iVal = iVal + ( registerDataBuffer[i] << (8*(i)));}
+  for (i = 0; i < iNbBytes; i++) {iVal = iVal + ( (unsigned int)(registerDataBuffer[i] << (8*(i))));}
 
   prefixByte  = registerDataBuffer[iNbBytes - 1];
   iNbPrefixBitsToCancel = 8*(iNbBytes) - nbbit - offset;
@@ -1719,7 +1719,7 @@ long    L0_ReadRegister      (L0_Context *i2c, unsigned int iI2CIndex, unsigned 
   postfixByte = postfixByte << (8 - offset);
   postfixByte = postfixByte >> (8 - offset);
 
-  iVal = -( prefixByte << (8*(iNbBytes - 1))) + ( iVal ) - postfixByte ;
+  iVal = -( (unsigned int)(prefixByte << (8*(iNbBytes - 1)))) + ( iVal ) - postfixByte ;
 
   /* sign bit propagation, if required */
   if (isSigned) {
@@ -1783,7 +1783,7 @@ long    L0_WriteRegister     (L0_Context *i2c, unsigned int iI2CIndex, unsigned 
     postfixByte = postfixByte << (8 - offset);
     postfixByte = postfixByte >> (8 - offset);
 
-    iVal = ( prefixByte << (8*(iNbBytes - 1))) + ( (unsigned long)Value << offset ) + postfixByte ;
+    iVal = ( (unsigned int)(prefixByte << (8*(iNbBytes - 1)))) + ( (unsigned long)Value << offset ) + postfixByte ;
   }
 
   for (i = 0 ; i < iNbBytes; i++ ) {registerDataBuffer[i] = (unsigned char)(iVal >> 8*(i));}
