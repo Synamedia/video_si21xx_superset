@@ -300,7 +300,7 @@ signed   int   SiLabs_SAT_Tuner_Select_Tuner   (SILABS_SAT_TUNER_Context *silabs
   if (sat_tuner_code               == 0xA2018 ) {
     silabs_tuner->sat_tuner_code = sat_tuner_code;
     silabs_tuner->tuner_index    = tuner_index;
-    if (tuner_index > AV2018_TUNER_COUNT) {silabs_tuner->tuner_index = 0;}
+    if (tuner_index >= AV2018_TUNER_COUNT) {silabs_tuner->tuner_index = 0;}
     silabs_tuner->i2c            = silabs_tuner->AV2018_Tuner[silabs_tuner->tuner_index]->i2c;
   }
 #endif /* SAT_TUNER_AV2018 */

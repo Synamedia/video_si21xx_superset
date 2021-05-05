@@ -239,7 +239,7 @@ unsigned char    Si2183_L1_API_Init      (L1_Si2183_Context *api, signed   int a
  ***********************************************************************************************************************/
 unsigned char    Si2183_L1_API_Patch     (L1_Si2183_Context *api, signed   int iNbBytes, unsigned char *pucDataBuffer) {
     signed   int res;
-    unsigned char rspByteBuffer[1];
+    unsigned char rspByteBuffer[2];
 
     SiTRACE("Si2183 Patch %d bytes\n",iNbBytes);
 
@@ -265,7 +265,7 @@ unsigned char    Si2183_L1_API_Patch     (L1_Si2183_Context *api, signed   int i
   Parameter:  error_code the error code.
  ***********************************************************************************************************************/
 unsigned char    Si2183_L1_CheckStatus   (L1_Si2183_Context *api) {
-    unsigned char rspByteBuffer[1];
+    unsigned char rspByteBuffer[2];
     return Si2183_pollForResponse(api, 1, rspByteBuffer);
 }
 /***********************************************************************************************************************

@@ -232,7 +232,7 @@ int           trace_count            = 0;
 int           carriage_return        = 1;
 int           trace_levels           = 0xffffffff;
 
-char trace_buffer[SiTRACES_BUFFER_LENGTH];
+char trace_buffer[SiTRACES_BUFFER_LENGTH+1];
 char trace_stockInt[25];
 char trace_timer[50];
 char trace_elapsed_time[20];
@@ -567,7 +567,7 @@ const char *SiTraceConfiguration   (const char *config) {
 #endif /* SiTRACES_FEATURES == SiTRACES_FULL */
     char saved;
     int loop, nbArgs, trace_configuration_message, lenTraceBuffer, destination, start, origine;
-    char *array[50];
+    char *array[51];
     char *pBuffer;
 #ifdef    LINUX_ST_SDK2_I2C
     char *config_string;

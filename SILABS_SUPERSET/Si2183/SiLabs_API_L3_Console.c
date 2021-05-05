@@ -2813,7 +2813,7 @@ signed   int  Silabs_demoloop                  (const char *demo_cmd)
     res     = 0;
     retdval = 0.0; i = (int)retdval;
 
-    if (fe > FRONT_END_COUNT) return 0;
+    if (fe >= FRONT_END_COUNT) return 0;
 
     txt           = txtBuffer;
     front_end     = &(FrontEnd_Table[fe]);

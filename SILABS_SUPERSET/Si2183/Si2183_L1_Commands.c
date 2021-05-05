@@ -515,7 +515,7 @@ unsigned char Si2183_L1_DD_DISEQC_SEND            (L1_Si2183_Context *api,
 {
     unsigned char error_code = 0;
     unsigned char cmdByteBuffer[8];
-    unsigned char rspByteBuffer[1];
+    unsigned char rspByteBuffer[2];
     api->rsp->dd_diseqc_send.STATUS = api->status;
 
     SiTRACE("Si2183 DD_DISEQC_SEND ");
@@ -948,7 +948,7 @@ unsigned char Si2183_L1_DD_RESTART                (L1_Si2183_Context *api)
 {
     unsigned char error_code = 0;
     unsigned char cmdByteBuffer[1];
-    unsigned char rspByteBuffer[1];
+    unsigned char rspByteBuffer[2];
     api->rsp->dd_restart.STATUS = api->status;
 
     SiTRACE("Si2183 DD_RESTART ");
@@ -984,7 +984,7 @@ unsigned char Si2183_L1_DD_RESTART_EXT            (L1_Si2183_Context *api,
 {
     unsigned char error_code = 0;
     unsigned char cmdByteBuffer[8];
-    unsigned char rspByteBuffer[1];
+    unsigned char rspByteBuffer[2];
     api->rsp->dd_restart_ext.STATUS = api->status;
 
     SiTRACE("Si2183 DD_RESTART_EXT ");
@@ -1036,7 +1036,7 @@ unsigned char Si2183_L1_DD_SET_REG                (L1_Si2183_Context *api,
 {
     unsigned char error_code = 0;
     unsigned char cmdByteBuffer[8];
-    unsigned char rspByteBuffer[1];
+    unsigned char rspByteBuffer[2];
     api->rsp->dd_set_reg.STATUS = api->status;
 
     SiTRACE("Si2183 DD_SET_REG ");
@@ -1352,7 +1352,7 @@ unsigned char Si2183_L1_DOWNLOAD_DATASET_CONTINUE (L1_Si2183_Context *api,
 {
     unsigned char error_code = 0;
     unsigned char cmdByteBuffer[8];
-    unsigned char rspByteBuffer[1];
+    unsigned char rspByteBuffer[2];
     api->rsp->download_dataset_continue.STATUS = api->status;
 
     SiTRACE("Si2183 DOWNLOAD_DATASET_CONTINUE ");
@@ -1406,7 +1406,7 @@ unsigned char Si2183_L1_DOWNLOAD_DATASET_START    (L1_Si2183_Context *api,
 {
     unsigned char error_code = 0;
     unsigned char cmdByteBuffer[8];
-    unsigned char rspByteBuffer[1];
+    unsigned char rspByteBuffer[2];
     api->rsp->download_dataset_start.STATUS = api->status;
 
     SiTRACE("Si2183 DOWNLOAD_DATASET_START ");
@@ -1460,7 +1460,7 @@ unsigned char Si2183_L1_DVBC2_CTRL                (L1_Si2183_Context *api,
 {
     unsigned char error_code = 0;
     unsigned char cmdByteBuffer[8];
-    unsigned char rspByteBuffer[1];
+    unsigned char rspByteBuffer[2];
     api->rsp->dvbc2_ctrl.STATUS = api->status;
 
     SiTRACE("Si2183 DVBC2_CTRL ");
@@ -1558,7 +1558,7 @@ unsigned char Si2183_L1_DVBC2_DS_PLP_SELECT       (L1_Si2183_Context *api,
 {
     unsigned char error_code = 0;
     unsigned char cmdByteBuffer[4];
-    unsigned char rspByteBuffer[1];
+    unsigned char rspByteBuffer[2];
     api->rsp->dvbc2_ds_plp_select.STATUS = api->status;
 
     SiTRACE("Si2183 DVBC2_DS_PLP_SELECT ");
@@ -1842,7 +1842,7 @@ unsigned char Si2183_L1_DVBS2_PLS_INIT            (L1_Si2183_Context *api,
 {
     unsigned char error_code = 0;
     unsigned char cmdByteBuffer[8];
-    unsigned char rspByteBuffer[1];
+    unsigned char rspByteBuffer[2];
     api->rsp->dvbs2_pls_init.STATUS = api->status;
 
     SiTRACE("Si2183 DVBS2_PLS_INIT ");
@@ -2046,7 +2046,7 @@ unsigned char Si2183_L1_DVBS2_STREAM_SELECT       (L1_Si2183_Context *api,
 {
     unsigned char error_code = 0;
     unsigned char cmdByteBuffer[3];
-    unsigned char rspByteBuffer[1];
+    unsigned char rspByteBuffer[2];
     api->rsp->dvbs2_stream_select.STATUS = api->status;
 
     SiTRACE("Si2183 DVBS2_STREAM_SELECT ");
@@ -2281,7 +2281,7 @@ unsigned char Si2183_L1_DVBT2_PLP_SELECT          (L1_Si2183_Context *api,
 {
     unsigned char error_code = 0;
     unsigned char cmdByteBuffer[3];
-    unsigned char rspByteBuffer[1];
+    unsigned char rspByteBuffer[2];
     api->rsp->dvbt2_plp_select.STATUS = api->status;
 
     SiTRACE("Si2183 DVBT2_PLP_SELECT ");
@@ -2541,7 +2541,7 @@ unsigned char Si2183_L1_EXIT_BOOTLOADER           (L1_Si2183_Context *api,
 {
     unsigned char error_code = 0;
     unsigned char cmdByteBuffer[2];
-    unsigned char rspByteBuffer[1];
+    unsigned char rspByteBuffer[2];
     api->rsp->exit_bootloader.STATUS = api->status;
 
     SiTRACE("Si2183 EXIT_BOOTLOADER ");
@@ -3031,7 +3031,7 @@ unsigned char Si2183_L1_POWER_UP                  (L1_Si2183_Context *api,
     unsigned char error_code = 0;
   #endif /* DEBUG_RANGE_CHECK */
     unsigned char cmdByteBuffer[8];
-    unsigned char rspByteBuffer[1];
+    unsigned char rspByteBuffer[2];
     api->rsp->power_up.STATUS = api->status;
 
     SiTRACE("Si2183 POWER_UP ");
@@ -3139,7 +3139,7 @@ unsigned char Si2183_L1_SCAN_CTRL                 (L1_Si2183_Context *api,
 {
     unsigned char error_code = 0;
     unsigned char cmdByteBuffer[8];
-    unsigned char rspByteBuffer[1];
+    unsigned char rspByteBuffer[2];
     api->rsp->scan_ctrl.STATUS = api->status;
 
     SiTRACE("Si2183 SCAN_CTRL ");
