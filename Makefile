@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 objects          =							\
+	SILABS_SUPERSET/Si_I2C/CyAPIUser.o				\
 	SILABS_SUPERSET/Si_I2C/Silabs_L0_Connection.o			\
 	SILABS_SUPERSET/Si2183/Si2183_L1_API.o				\
 	SILABS_SUPERSET/Si2183/Si2183_L1_Commands.o			\
@@ -39,6 +40,7 @@ override CFLAGS :=							\
 	-I SILABS_SUPERSET/SAT						\
 	-I SILABS_SUPERSET/SAT/AV2018					\
 	$(CFLAGS)
+LDLIBS           = -l usb-1.0
 SILABS_SUPERSET/Si2183/SiLabs_API_L3_Console: $(objects)
 clean:
 	-rm -f $(objects)
