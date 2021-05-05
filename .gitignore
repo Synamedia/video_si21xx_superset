@@ -1,0 +1,4 @@
+*/*/*.o
+*/*/*/*.o
+SILABS_SUPERSET/Si2183/SiLabs_API_L3_Console
+SiLabs_Traces.txt
