@@ -103,7 +103,6 @@ signed   int   SiLabs_Channel_Bonding_SW_Init    (SILABS_Channel_Bonding       *
                                                 , SILABS_TS_BUS                 first_dual_output
                                                 , SILABS_TS_BUS                 second_dual_input
                                                  ) {
-  signed   int i;
 
   SiTRACE_X("SiLabs_Channel_Bonding_SW_Init  first_dual_die_A(0x%08x), first_dual_die_B(0x%08x), second_dual_die_A(0x%08x), second_dual_die_B(0x%08x), first_dual_output %d, second_dual_input %d\n"
                                        ,(int)first_dual_die_A,    (int)first_dual_die_B,    (int)second_dual_die_A,    (int)second_dual_die_B,         first_dual_output,    second_dual_input);
