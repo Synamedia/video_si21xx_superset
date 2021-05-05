@@ -8556,11 +8556,12 @@ signed   int  SiLabs_API_Demods_Kickstart           (void)
     front_end  = &(FrontEnd_Table[fe]);
   #ifdef    Si2183_COMPATIBLE
     if (front_end->chip ==   0x2183 ) {
+#ifdef    TERRESTRIAL_FRONT_END
+      front_end->Si2183_FE->demod->cmd->start_clk.clk_mode = front_end->Si2183_FE->demod->tuner_ter_clock_input;
+#else  /* TERRESTRIAL_FRONT_END */
 #ifdef    SATELLITE_FRONT_END
       front_end->Si2183_FE->demod->cmd->start_clk.clk_mode = front_end->Si2183_FE->demod->tuner_sat_clock_input;
 #endif /* SATELLITE_FRONT_END */
-#ifdef    TERRESTRIAL_FRONT_END
-      front_end->Si2183_FE->demod->cmd->start_clk.clk_mode = front_end->Si2183_FE->demod->tuner_ter_clock_input;
 #endif /* TERRESTRIAL_FRONT_END */
       /* when not using a Xtal, set TUNE_CAP to 'EXT_CLK' (The value for XTAL use is set in Si2183_L2_SW_Init) */
       if (front_end->Si2183_FE->demod->cmd->start_clk.clk_mode != Si2183_START_CLK_CMD_CLK_MODE_XTAL) {

@@ -6092,7 +6092,6 @@ signed   int  Si2183_L2_Channel_Seek_Next  (Si2183_L2_Context *front_end
     signed   int  skip_resume;
     signed   int  start_resume;
     signed   int  previous_scan_status;
-    unsigned char jump_to_next_channel;
     L1_Si2183_Context *api;
     /* init all flags to avoid compiler warnings */
     return_code          = 0; /* To avoid code checker warning */
@@ -6318,9 +6317,7 @@ signed   int  Si2183_L2_Channel_Seek_Next  (Si2183_L2_Context *front_end
         system_wait(min_lock_time_ms);
       }
 
-      jump_to_next_channel = 0;
-
-      while (!jump_to_next_channel) {
+      while (1) {
 
 #ifdef    DEMOD_DVB_T
         if ((front_end->demod->standard == Si2183_DD_MODE_PROP_MODULATION_DVBT)
@@ -6360,7 +6357,6 @@ signed   int  Si2183_L2_Channel_Seek_Next  (Si2183_L2_Context *front_end
             SiTRACE ("NO DVBT/T2. Jumping from  %10d after %7d ms. Delay from DD_RESTART %4d ms AGC2 %3d\n", seek_freq, searchDelay, decisionDelay, api->rsp->dd_ext_agc_ter.agc_2_level);
             if(seek_freq==front_end->rangeMax) {front_end->rangeMin=seek_freq;}
             seek_freq = seek_freq + channelIncrement;
-            jump_to_next_channel = 1;
             start_resume         = 1;
             break;
           }
@@ -6433,7 +6429,6 @@ signed   int  Si2183_L2_Channel_Seek_Next  (Si2183_L2_Context *front_end
             SiTRACE ("NO ISDB-T. Jumping from  %10d after %7d ms. Delay from DD_RESTART %4d ms AGC1 %3d AGC2 %3d\n", seek_freq, searchDelay, decisionDelay, api->rsp->dd_ext_agc_ter.agc_1_level, api->rsp->dd_ext_agc_ter.agc_2_level);
             if(seek_freq==front_end->rangeMax) {front_end->rangeMin=seek_freq;}
             seek_freq = seek_freq + channelIncrement;
-            jump_to_next_channel = 1;
             start_resume         = 1;
             break;
           }
@@ -6471,7 +6466,6 @@ signed   int  Si2183_L2_Channel_Seek_Next  (Si2183_L2_Context *front_end
             SiTRACE ("NOT DVB-C2 flag set at %10d/%d Mhz after %7d ms. Delay from DD_RESTART %4d ms\n", seek_freq, front_end->demod->prop->dd_mode.bw, searchDelay, decisionDelay);
             if(seek_freq==front_end->rangeMax) {front_end->rangeMin=seek_freq;}
             seek_freq = seek_freq + channelIncrement;
-            jump_to_next_channel = 1;
             start_resume         = 1;
             /* No channel detected, increment the frequency */
             decisionDelay = system_time() - front_end->ddRestartTime; front_end->cumulativeScanTime = front_end->cumulativeScanTime + decisionDelay; front_end->nbDecisions++;
@@ -6523,7 +6517,6 @@ signed   int  Si2183_L2_Channel_Seek_Next  (Si2183_L2_Context *front_end
           SiTRACE ("----------- Timeout from  %10d after %7d ms. Delay from DD_RESTART %4d ms\n", seek_freq, timeoutDelay, decisionDelay);
 /*          SiERROR ("Timeout (blind_mode = 0)\n");*/
           seek_freq = seek_freq + channelIncrement;
-          jump_to_next_channel = 1;
           start_resume         = 1;
           break;
         }

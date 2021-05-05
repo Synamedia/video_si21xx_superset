@@ -723,8 +723,8 @@ signed   int   SiLabs_TER_Tuner_Store_FW             (SILABS_TER_TUNER_Context *
   return -1;
 }
 signed   int   SiLabs_TER_Tuner_Broadcast_I2C        (SILABS_TER_TUNER_Context *silabs_tuners[], signed   int tuner_count) {
-  signed   int i;
-  signed   int return_code;
+  signed   int i = 0;
+  signed   int return_code = 1;
   silabs_tuners = silabs_tuners; /* To avoid compilation warnings */
   tuner_count    = tuner_count;  /* To avoid compilation warnings */
   SiTRACE_X("SiLabs_TER_Tuner_Broadcast_I2C tuner_count %d\n", tuner_count);
@@ -802,7 +802,6 @@ signed   int   SiLabs_TER_Tuner_Broadcast_I2C        (SILABS_TER_TUNER_Context *
   }
 #endif /* TER_TUNER_Si2191B */
   SiTRACE_X("SiLabs_TER_Tuner_Broadcast_I2C (%d tuners)\n", tuner_count);
-  return_code = i = 0;
   return return_code;
 }
 signed   int   SiLabs_TER_Tuner_HW_Init              (SILABS_TER_TUNER_Context *silabs_tuner) {

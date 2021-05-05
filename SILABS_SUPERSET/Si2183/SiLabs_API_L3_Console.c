@@ -1676,13 +1676,13 @@ signed   int  Silabs_UserInput_SeekNext      (void)
           } else {
             if (plp_type != SILABS_PLP_TYPE_COMMON) {
               SiLabs_API_Select_PLP(front_end, plp_id);
-              carrier_index = SiLabs_Scan_Check_And_Add_Carrier (front_end, standard, freq, bandwidth_Hz, stream, symbol_rate_bps, constellation, polarization, band, data_slice_id, plp_id, T2_base_lite);
+              SiLabs_Scan_Check_And_Add_Carrier (front_end, standard, freq, bandwidth_Hz, stream, symbol_rate_bps, constellation, polarization, band, data_slice_id, plp_id, T2_base_lite);
               SiLabs_API_TS_Mode(front_end, SILABS_TS_TRISTATE);
             }
           }
         }
       } else {
-        carrier_index = SiLabs_Scan_Check_And_Add_Carrier (front_end, standard, freq, bandwidth_Hz, stream, symbol_rate_bps, constellation, polarization, band, data_slice_id, plp_id, T2_base_lite);
+        SiLabs_Scan_Check_And_Add_Carrier (front_end, standard, freq, bandwidth_Hz, stream, symbol_rate_bps, constellation, polarization, band, data_slice_id, plp_id, T2_base_lite);
         SiLabs_API_TS_Mode(front_end, SILABS_TS_TRISTATE);
       }
       if ( (custom_status->t2_version >= SILABS_T2_VERSION_1_3_1) & (custom_status->fef == 1) ) {
@@ -1711,13 +1711,13 @@ signed   int  Silabs_UserInput_SeekNext      (void)
                 } else {
                   if (plp_type != SILABS_PLP_TYPE_COMMON) {
                     SiLabs_API_Select_PLP(front_end, plp_id);
-                    carrier_index = SiLabs_Scan_Check_And_Add_Carrier (front_end, standard, freq, bandwidth_Hz, stream, symbol_rate_bps, constellation, polarization, band, data_slice_id, plp_id, T2_mode);
+                    SiLabs_Scan_Check_And_Add_Carrier (front_end, standard, freq, bandwidth_Hz, stream, symbol_rate_bps, constellation, polarization, band, data_slice_id, plp_id, T2_mode);
                     SiLabs_API_TS_Mode(front_end, SILABS_TS_TRISTATE);
                   }
                 }
               }
             } else {
-              carrier_index = SiLabs_Scan_Check_And_Add_Carrier (front_end, standard, freq, bandwidth_Hz, stream, symbol_rate_bps, constellation, polarization, band, data_slice_id, plp_id, T2_mode);
+              SiLabs_Scan_Check_And_Add_Carrier (front_end, standard, freq, bandwidth_Hz, stream, symbol_rate_bps, constellation, polarization, band, data_slice_id, plp_id, T2_mode);
               SiLabs_API_TS_Mode(front_end, SILABS_TS_TRISTATE);
             }
           }
