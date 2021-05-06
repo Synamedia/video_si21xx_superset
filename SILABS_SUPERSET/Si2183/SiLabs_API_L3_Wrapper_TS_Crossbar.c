@@ -299,6 +299,8 @@ signed   int   SiLabs_TS_Crossbar_TS1_TS2         (SILABS_TS_Crossbar *ts_crossb
   unsigned char ts_1_source_set;
   unsigned char fe_A_pins_change;
   unsigned char fe_B_pins_change;
+  unsigned char ts_1_no_tristate;
+  unsigned char ts_2_no_tristate;
   SILABS_FE_Context *ts_1_source;
   SILABS_FE_Context *ts_2_source;
   ts_1_source = NULL;
@@ -414,8 +416,10 @@ signed   int   SiLabs_TS_Crossbar_TS1_TS2         (SILABS_TS_Crossbar *ts_crossb
       ts_crossbar->fe_A->Si2183_FE->demod->cmd->dd_ts_pins.secondary_ts_mode  = Si2183_DD_TS_PINS_CMD_SECONDARY_TS_MODE_DRIVE_TS;
     }
 
+    ts_1_no_tristate = (ts_1_signal == SILABS_TS_CROSSBAR_TS_A || ts_1_signal == SILABS_TS_CROSSBAR_TS_B);
+    ts_1_no_tristate = ts_1_no_tristate && (ts_1_mode == SILABS_TS_SERIAL || ts_1_mode == SILABS_TS_PARALLEL);
     /* Setting source drive and strength values in ts_1_source if required   */
-    if (ts_1_mode != SILABS_TS_TRISTATE) {
+    if (ts_1_no_tristate) {
       if (ts_1_mode == SILABS_TS_SERIAL  ) {
         if (ts_1_signal == SILABS_TS_CROSSBAR_TS_A) {
           ts_1_source = ts_crossbar->fe_A;
@@ -473,8 +477,10 @@ signed   int   SiLabs_TS_Crossbar_TS1_TS2         (SILABS_TS_Crossbar *ts_crossb
       Si2183_L1_SetProperty2(ts_1_source->Si2183_FE->demod,   Si2183_DD_TS_MODE_PROP_CODE );
     }
 
+    ts_2_no_tristate = (ts_2_signal == SILABS_TS_CROSSBAR_TS_A || ts_2_signal == SILABS_TS_CROSSBAR_TS_B);
+    ts_2_no_tristate = ts_2_no_tristate && (ts_2_mode == SILABS_TS_SERIAL || ts_2_mode == SILABS_TS_PARALLEL);
     /* Setting source drive and strength values in ts_2_source if required   */
-    if (ts_2_mode != SILABS_TS_TRISTATE) {
+    if (ts_2_no_tristate) {
       if (ts_2_mode == SILABS_TS_SERIAL  ) {
         if (ts_2_signal == SILABS_TS_CROSSBAR_TS_A) {
           ts_2_source = ts_crossbar->fe_A;
@@ -533,7 +539,7 @@ signed   int   SiLabs_TS_Crossbar_TS1_TS2         (SILABS_TS_Crossbar *ts_crossb
     }
 
     /* Enable TS1 after setting the TS output as required on the source side */
-    if (ts_1_mode != SILABS_TS_TRISTATE) {
+    if (ts_1_no_tristate) {
       SiTRACE("Enabling ts_1_source (%s) TS output\n", ts_1_source->tag);
       if (Si2183_L1_SendCommand2 (ts_1_source->Si2183_FE->demod, Si2183_DD_TS_PINS_CMD_CODE ) != NO_Si2183_ERROR) {
         SiTRACE ("TS Crossbar ERROR when changing ts_1_source (%s) DD_TS_PINS!\n", ts_1_source->tag);
@@ -544,7 +550,7 @@ signed   int   SiLabs_TS_Crossbar_TS1_TS2         (SILABS_TS_Crossbar *ts_crossb
     }
 
     /* Enable TS2 after setting the TS output as required on the source side */
-    if (ts_2_mode != SILABS_TS_TRISTATE) {
+    if (ts_2_no_tristate) {
       if ( (ts_1_source != ts_2_source) | (ts_1_source_set == 0) ) {
         SiTRACE("Enabling ts_2_source (%s) TS output\n", ts_2_source->tag);
         if (Si2183_L1_SendCommand2 (ts_2_source->Si2183_FE->demod, Si2183_DD_TS_PINS_CMD_CODE ) != NO_Si2183_ERROR) {
