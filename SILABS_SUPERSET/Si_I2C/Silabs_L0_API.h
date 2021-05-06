@@ -53,7 +53,7 @@ limitations under the License.
     #include <math.h>
   #endif /* NO_MATH_H_APPLICATION */
 /* <porting> Comment the line below to avoid using the Cypress chip for USB communication under Linux */
-  #define   LINUX_USB_Capability
+  #define   USB_Capability
 /* <porting> Comment the line below to avoid using I2C under Linux */
 /*  #define   LINUX_I2C_Capability */
   #ifdef    LINUX_I2C_Capability
@@ -166,8 +166,7 @@ typedef enum _CONNECTION_TYPE
     SIMU = 0,
     USB,
     CUSTOMER,
-    LINUX_I2C,
-    LINUX_USB,
+    LINUX_I2C, /*FIXME: roll back for Macros.h direct refs.*/
     LINUX_KERNEL_I2C,
     none
 }  CONNECTION_TYPE;

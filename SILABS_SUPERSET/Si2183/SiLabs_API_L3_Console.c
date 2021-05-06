@@ -3097,7 +3097,7 @@ signed   int  Silabs_demoloop                  (const char *demo_cmd)
     else if (strcmp_nocase(entry, "write"    )==0) { SiLabs_I2C_UserInput_write();}
     else if (strcmp_nocase(entry, "usb"      )==0) { mode = USB;      L0_Connect(i2c, mode); SiLabs_API_HW_Connect(front_end, mode); return 1;}
     else if (strcmp_nocase(entry, "simu"     )==0) { mode = SIMU;     L0_Connect(i2c, mode); SiLabs_API_HW_Connect(front_end, mode); return 1;}
-    else if (strcmp_nocase(entry, "linux_USB")==0) { mode = LINUX_USB;L0_Connect(i2c, mode); SiLabs_API_HW_Connect(front_end, mode); return 1;}
+    else if (strcmp_nocase(entry, "linux_USB")==0) { mode = USB;      L0_Connect(i2c, mode); SiLabs_API_HW_Connect(front_end, mode); return 1;}
     else if (strcmp_nocase(entry, "customer" )==0) { mode = CUSTOMER; L0_Connect(i2c, mode); SiLabs_API_HW_Connect(front_end, mode); return 1;}
   #ifdef    USB_Capability
     else if (strcmp_nocase(entry, "close"    )==0) { mode = SIMU;     L0_Cypress_Process("close", "", 0.0, &retdval, &txt) ; printf("%s\n", txt); return 1;}

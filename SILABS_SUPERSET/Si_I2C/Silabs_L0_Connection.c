@@ -157,29 +157,15 @@ limitations under the License.
 #define   SiLEVEL          0
 #include "Silabs_L0_API.h"
 
-#ifdef    NO_WIN32
-  /* NO_WIN32: includes for non-Windows platform */
-  #ifdef    LINUX_USB_Capability
-    #include "CyAPIUser.h"
-    typedef enum NN6_RET {
-      RET_OK = 0,
-      RET_KO = 2
-    } NN6_RET;
-    unsigned char  cypress_checks_done    = 0;
-  #endif /* LINUX_USB_Capability */
-#endif /* End of includes for non-Windows platform */
-#ifndef   NO_WIN32
-  /* includes for Windows */
-  #ifdef    USB_Capability
-    #include "CyAPIUser.h"
-    typedef enum NN6_RET {
-      RET_OK = 0,
-      RET_KO = 2
-    } NN6_RET;
-    unsigned char  cypress_checks_done    = 0;
-    double mydval;
-  #endif /* USB_Capability */
-#endif /* End of includes for Windows */
+#ifdef    USB_Capability
+  #include "CyAPIUser.h"
+  typedef enum NN6_RET {
+    RET_OK = 0,
+    RET_KO = 2
+  } NN6_RET;
+  unsigned char  cypress_checks_done    = 0;
+  double mydval;
+#endif /* USB_Capability */
 
 L0_Context  rawI2C_context;
 L0_Context *rawI2C;
@@ -1199,7 +1185,11 @@ const char*   L0_InterfaceType     (L0_Context* i2c) {
   switch (i2c->connectionType) {
   #ifdef USB_Capability
     case USB:
+      #ifndef   NO_WIN32
       return (char *)"USB";
+      #else  /* NO_WIN32 */
+      return (char *) "LUSB";
+      #endif /* NO_WIN32 */
       break;
   #endif /* USB_Capability */
     case SIMU:
@@ -1210,9 +1200,6 @@ const char*   L0_InterfaceType     (L0_Context* i2c) {
       break;
     case LINUX_I2C:
       return (char *)"I2C";
-      break;
-    case LINUX_USB:
-      return (char *) "LUSB";
       break;
 #ifdef    LINUX_ST_SDK2_I2C
     case LINUX_KERNEL_I2C:
@@ -1270,11 +1257,6 @@ int     L0_Connect           (L0_Context *i2c, CONNECTION_TYPE connType) {
     Cypress_USB_Close();
   }
   #endif /* USB_Capability */
-  #ifdef    LINUX_USB_Capability
-  if (i2c->connectionType == LINUX_USB) {
-    Cypress_USB_Close();
-  }
-  #endif /* LINUX_USB_Capability */
   switch (connType) {
     #ifdef    USB_Capability
     case USB:
@@ -1293,13 +1275,6 @@ int     L0_Connect           (L0_Context *i2c, CONNECTION_TYPE connType) {
       return 1;
       break;
   #endif /* LINUX_I2C_Capability */
-  #ifdef    LINUX_USB_Capability
-    case LINUX_USB:
-      Cypress_USB_Open();
-      i2c->connectionType =  LINUX_USB;
-      return 1;
-      break;
-  #endif /* LINUX_USB_Capability */
   #ifdef    LINUX_ST_SDK2_I2C
     case LINUX_KERNEL_I2C:
       i2c->connectionType =  LINUX_KERNEL_I2C;
@@ -1383,13 +1358,6 @@ int     L0_ReadBytes         (L0_Context* i2c, unsigned int iI2CIndex, int iNbBy
         }
       #endif /* LINUX_I2C_Capability */
       break;
-#ifdef    LINUX_USB_Capability
-    case LINUX_USB:
-      if (RET_OK == Cypress_USB_ReadI2C(i2c->address>>1, i2c->indexSize, pucAddressBuffer, iNbBytes, pucDataBuffer)) {
-        nbReadBytes = iNbBytes;
-      }
-      break;
-#endif /* USB_Capability */
 #ifdef    LINUX_ST_SDK2_I2C
     case LINUX_KERNEL_I2C:
       i2c->SDK2_i2c_Chip->I2cAddr = i2c->address>>1;
@@ -1491,16 +1459,6 @@ int     L0_WriteBytes        (L0_Context* i2c, unsigned int iI2CIndex, int iNbBy
       }
       break;
 #endif /* USB_Capability */
-#ifdef    LINUX_USB_Capability
-    case LINUX_USB:
-      pucDataBuffer = &pucBuffer[i2c->indexSize];
-      if (RET_OK == Cypress_USB_WriteI2C (i2c->address>>1, i2c->indexSize, pucAddressBuffer, iNbBytes, pucDataBuffer)) {
-        nbWrittenBytes = iNbBytes + i2c->indexSize;
-      } else {
-        write_error++;
-      }
-      break;
-#endif /* LINUX_USB_Capability */
 #ifdef    LINUX_ST_SDK2_I2C
     case LINUX_KERNEL_I2C:
       nbWrittenBytes = 0;
