@@ -1,4 +1,5 @@
 /*************************************************************************************************************
+Copyright 2021 Synamedia
 Copyright 2015-2019, Silicon Laboratories, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,6 +13,9 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+This file has been modified by Synamedia to fix defects reported by
+Coverity and Valgrind.
  *************************************************************************************************************/
 /***************************************************************************************
                   Silicon Laboratories Broadcast Si2183 Layer 2 API
